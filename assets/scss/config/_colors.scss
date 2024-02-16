@@ -1,0 +1,26 @@
+// ==========================================================================
+// COLORS : Eje.: background: color( primary, 50 );
+// ==========================================================================
+
+$colors: (
+   primary: (
+      base: #26A0C4,
+      light: #0B4151 ,
+      dark: #002534,  
+      subtitle: #17718C,    
+   ),
+   secondary: (
+      base: #7CAA5A,
+      light: #BAEB94 ,
+      dark: #4C7F2E
+   ),
+   grayscale: (
+      white           : #ffffff,
+      gray-1          : #D3D3D3,   
+      gray-2          : #4F4F4F,
+      black           : #000000
+   ),
+   background :(
+      base            :#F4F4F4,     
+   )
+);

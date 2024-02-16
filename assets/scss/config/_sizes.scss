@@ -1,0 +1,49 @@
+// ==========================================================================
+// SPACING : Eje.: padding: map-get($sizes, "tiny");
+// ==========================================================================
+
+$sizes: (
+   minimun  : 1rem,       // 10px
+   tiny     : 1.2rem,     // 12px
+   regular  : 1.3rem,     // 13px
+   small    : 1.4rem,     // 14px
+   base     : 1.6rem,     // 16px
+   thumb    : 1.8rem,     // 18px
+   half     : 2.0rem,     // 20px
+   medium   : 2.8rem,     // 28px
+   large    : 3.6rem,     // 36px
+   huge     : 4.8rem      // 48px
+);
+
+$lineheight: (
+   lh-minimun  : 1.3rem,     // 13px
+   lh-tiny     : 1.4rem,     // 14px
+   lh-small    : 1.8rem,     // 18px
+   lh-base     : 2.2rem,     // 22px
+   lh-regular  : 2.4rem,     // 24px
+   lh-thumb    : 2.6rem,     // 26px
+   lh-half     : 3.2rem,     // 32px
+   lh-medium   : 3.6rem,     // 36px
+   lh-large    : 4.1rem,     // 41px
+   lh-huge     : 5.6rem,     // 56px
+   lh-giant    : 6.4rem      // 64px
+);
+
+$weights: (
+   light      :  200,
+   regular    :  400,
+   medium     :  500,
+   semi_bold  :  600,
+   bold       :  700,
+   extra_bold :  800
+);
+
+$breakpoints: (
+   xs   : 360px,
+   sm   : 540px,
+   md   : 720px,
+   lg   : 960px,
+   xl   : 1140px,
+   xxl  : 1440px,
+   l    : 1560px
+);

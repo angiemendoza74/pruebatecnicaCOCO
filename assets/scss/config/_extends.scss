@@ -1,0 +1,93 @@
+%button{
+    box-shadow: none;
+    cursor:pointer;
+    display: block;
+    font-family: $font-secondary;
+    font-size: map-get($sizes, base);
+    font-weight: map-get($weights, regular);
+    margin: 0 auto;
+    //max-width: 26.5rem;
+    padding: .5rem 2rem;
+    text-align: center;
+    line-height: 2.8rem;
+    @include mq-min(lg){
+      padding: 1.3rem 1.9rem;
+      font-size: map-get($sizes, thumb);
+    }
+}
+
+%link{
+    background: transparent;    
+    font-family: $font-secondary;
+    font-size: map-get($sizes,small);
+    line-height: 2rem;
+    outline: 0;
+    padding: 0;    
+    position: relative;
+    &::before{
+      content:'';
+      opacity: 0;
+      -webkit-transition: opacity 0.3s;
+      transition: opacity 0.3s;
+    }
+    span{
+      font-size: map-get($sizes,minimun);    
+      margin-left: .6rem;  
+      vertical-align: middle;
+      opacity: 0.8;
+      -webkit-transition: opacity 0.3s;
+      transition: opacity 0.3s;
+    }
+    &:hover{
+      opacity: 1;
+      span{
+        margin-left: 1.6rem;
+      }
+      &::before{
+        content:'';
+        background-color: color(primary,base);
+        bottom:-.1rem;
+        display: block;
+        height: 1px;
+        left:0;
+        opacity: 1;
+        position: absolute;
+        width: 82%;
+      }
+    }
+}
+
+%titles{
+  color:color(primary,subtitle);
+  font-family: $font-secondary;
+  font-size: map-get($sizes,half);
+  font-weight: map-get($weights, "bold");
+}
+%subtitle{
+  color:color(primary,subtitle);
+  font-family: $font-primary;
+  font-size: map-get($sizes,base);
+  line-height: map-get($lineheight,lh-regular);
+  font-weight: map-get($weights, "regular"); 
+}
+%txt{
+  font-family: $font-primary;
+  font-size: map-get($sizes,base);
+  font-weight: map-get($weights, "regular"); 
+}
+
+
+@include mq-min(md){  
+  %titles{
+    font-size: map-get($sizes,large);
+  }
+  %button{
+    padding: .8rem;
+  }
+}
+@include mq-min (xl) {
+  %link{
+    font-size: map-get($sizes,base);
+    line-height: map-get($lineheight, lh-regular);
+  }
+}

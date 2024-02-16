@@ -1,0 +1,59 @@
+.userzone{
+    &__item{
+        display: flex;
+        flex-direction: column;
+        margin: 0 0 6px;
+        width: 100%;
+    }
+    input, select{
+        border-radius: 20px;
+        border:1px solid #0B4151;
+        color:color(primary,light);
+        font-family: $font-primary;
+        font-size: map-get($sizes, "base");
+        font-weight: map-get($weights, "regular");
+        height: 60px;
+        padding:0 10px;
+    }
+    .form-control{
+        align-items: center;
+        display: flex;
+        flex-direction: row;
+        input{
+            border-radius: 0 20px 20px 0;
+            margin-top: 6px;
+        }
+    }
+    label{
+        color:color(primary,light);
+        font-family: $font-primary;
+        font-size: map-get($sizes, "base");
+        font-weight: map-get($weights, "semi_bold");
+    }
+    
+    select{
+        border-radius: 20px 0 0 20px;
+    }
+    button{
+        margin-top: 4.8rem;
+    }
+}
+@include mq-min (lg){  
+    .userzone{
+        &__group{
+            display: flex;
+            justify-content: space-between;
+        }
+        form{
+            margin: 0 auto;
+            max-width: 690px;
+        }
+        &__item:nth-child(2n+1){
+            margin-right: 3rem;
+        }
+        &__lastitem{
+            display: block;
+            width: 48%;
+        }
+    }
+}

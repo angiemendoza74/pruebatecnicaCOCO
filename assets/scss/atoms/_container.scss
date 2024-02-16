@@ -1,0 +1,29 @@
+.container {
+    width: 100%;
+    padding: {
+       left: 1.6rem;
+       right: 1.6rem;
+    };
+    margin: {
+       left: auto;
+       right: auto;
+    };
+    &.full {
+      padding: 0;
+      @include mq-min(lg) {
+         padding: {
+            left: 4rem;
+            right: 4rem;
+         };
+      }
+   }
+    @include mq-min(md) {
+       max-width: map-get($breakpoints, "lg") - 100px ;
+    }
+    @include mq-min(lg) {
+      max-width: 1136px;
+   } 
+   @include mq-min(xl) {
+      max-width: 1440px;
+   } 
+} 

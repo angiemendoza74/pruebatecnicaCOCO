@@ -1,0 +1,79 @@
+.appointment, .userzone{
+    background: color(background,base);
+    padding-bottom: 5.5rem;
+    padding-top: 11.5rem;
+    &__card{
+        background: color(grayscale,white);
+        box-shadow:
+        0 2.8px 2.2px rgba(0, 0, 0, 0.034),
+        0 6.7px 5.3px rgba(0, 0, 0, 0.048),
+        0 12.5px 10px rgba(189, 176, 176, 0.06),
+        0 22.3px 17.9px rgba(0, 0, 0, 0.072),
+        0 41.8px 33.4px rgba(0, 0, 0, 0.086),
+        0 100px 80px rgba(0, 0, 0, 0.12);
+        border-radius:2rem;      
+        margin: 0 0 3rem;
+        padding: 3.5rem; 
+    }
+    img{
+        height: auto;
+        width: 83px;
+    }
+    &__doctor, &__data, &__date, &__hour{
+        display: flex;
+        flex-direction: row;
+    }
+    &__date, &__hour{
+        align-items: center;
+    }
+    p{
+        @extend %txt;
+    }
+    &__subtitle{
+        @extend %subtitle;
+    }
+    &__title{
+        @extend %titles;
+        margin-bottom: 3.3rem;
+        margin-top:3.4rem;
+        text-align: center;
+    }
+    &__grid{
+        display: grid;
+        grid-template-columns: repeat(1, 1fr);
+        grid-gap: 10px;
+        grid-auto-rows: minmax(100px, auto);
+    }
+    &__name{
+        margin-left: 1.1rem;
+    }
+    &__info{
+        margin: 1.2rem 0;
+    }
+    .icon{
+        font-size: 1.4rem;
+    }
+    &__item{
+        margin: 2rem 0;
+    }
+    &__data{
+        justify-content:space-between;
+    }
+}
+@include mq-min (lg){  
+    .appointment{
+        &__grid{
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            grid-gap: 10px;
+            grid-auto-rows: minmax(100px, auto);
+        }
+    }
+}
+@include mq-min (xl){  
+    .appointment, .userzone{
+        .container{
+            max-width: 1080px;
+        }
+    }
+}

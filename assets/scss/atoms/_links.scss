@@ -1,0 +1,13 @@
+a{
+    @extend %link;
+}
+.at-link{
+    @include link (color(primary,light),color(grayscale,white));
+    text-decoration: none;
+    transition: .3s;
+    &:hover {
+        background: (color(primary,base));
+        text-decoration: none;
+        transition: .3s;
+    }
+}

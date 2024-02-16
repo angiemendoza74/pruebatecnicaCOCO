@@ -1,0 +1,309 @@
+// ==========================================================================
+// Anchos minimos (min-width) : @include mq-min(sm) {}
+// ==========================================================================
+@mixin mq-min($breakpoint) {
+  @if map-has-key($breakpoints, $breakpoint) {
+    $breakpoint-value: map-get($breakpoints, $breakpoint);
+    @media (min-width: $breakpoint-value) {
+      @content;
+    }
+  } @else {
+    @warn 'Invalid breakpoint: #{$breakpoint}.';
+  }
+}
+
+// ==========================================================================
+// Anchos maximos (max-width) : @include mq-max(sm) {}
+// ==========================================================================
+@mixin mq-max($breakpoint) {
+  @if map-has-key($breakpoints, $breakpoint) {
+    $breakpoint-value: map-get($breakpoints, $breakpoint);
+    @media (max-width: ($breakpoint-value - 1)) {
+      @content;
+    }
+  } @else {
+    @warn 'Invalid breakpoint: #{$breakpoint}.';
+  }
+}
+
+// ==========================================================================
+// Anchos maximos / minimos (max-width and min-width) : @include mq-between(sm, md) {}
+// ==========================================================================
+@mixin mq-between($lower, $upper) {
+  @if map-has-key($breakpoints, $lower) and map-has-key($breakpoints, $upper) {
+    $lower-breakpoint: map-get($breakpoints, $lower);
+    $upper-breakpoint: map-get($breakpoints, $upper);
+    @media (min-width: $lower-breakpoint) and (max-width: ($upper-breakpoint - 1)) {
+      @content;
+    }
+  } @else {
+    @if (map-has-key($breakpoints, $lower) ==false) {
+      @warn 'Your lower breakpoint was invalid: #{$lower}.';
+    }
+    @if (map-has-key($breakpoints, $upper) ==false) {
+      @warn 'Your upper breakpoint was invalid: #{$upper}.';
+    }
+  }
+}
+//@include orientation(landscape) 
+@mixin orientation($direction) { 
+
+  $orientation-landscape: "(orientation:landscape)"; 
+  $orientation-portrait: "(orientation:portrait)";
+
+  @if $direction == landscape {
+    @media #{$orientation-landscape} { @content; } 
+  }
+  @if $direction == portrait {
+    @media #{$orientation-portrait} { @content; } 
+  }
+} 
+
+// ==========================================================================
+// Mixins para la orientación de la barra de navegación: @include nav( ... );
+// ==========================================================================
+@mixin nav($direction) {
+  flex-direction: $direction;
+  justify-content: space-between;
+  list-style: none;
+}
+
+// ==========================================================================
+// Mixins para la generación de los botones : @include button( ... );
+// ==========================================================================
+@mixin button($bg, $color, $border-width, $border-radius) {
+  border: $border-width solid;
+  border-radius: $border-radius;
+  color: $color;  
+  // se trata de un boton ghost u outline
+  @if($bg == transparent or $bg == color(grayscale, white)) {
+    background: $bg;
+
+    &:hover {
+      color: color(grayscale, white);
+      //transition: background 0.2s ease;
+      text-decoration: none;
+    }
+    &:focus {
+      color: color(grayscale, white);
+      outline: 0;
+      text-decoration: none;
+    }
+  // Se trata de un botón sólido
+  } @else{
+    background: $bg;
+    &:hover {
+      // background: darken($bg, 9%);
+      transition: background 0.2s ease;
+      text-decoration: none;
+    }
+    &:focus {
+      // background: darken($bg, 9%);
+      outline: 0;
+      text-decoration: none;
+    }
+    &:active {
+      // background: darken($bg, 10%);
+    }
+  }
+
+  &.disabled,
+  &:disabled {
+    opacity: 0.55;
+    color: $color;
+    box-shadow: none;
+    cursor: auto;
+    &:hover {
+      background: $bg;
+    }
+    &:focus {
+      box-shadow: none;
+    }
+  }
+}
+
+// ==========================================================================
+// Mixins para la generación de los inputs : @include input( ... );
+// ==========================================================================
+@mixin input($bg, $color,  $border-style, $border-width,$border,$border-radius) {
+  border: $border-style $border-width $border;
+  border-radius:$border-radius;
+  color: $color;
+  // propiedades para input outline
+  @if $bg == transparent{
+    background: transparent;
+    &:hover {
+      background: $bg;
+    }
+    &:focus {
+      background: darken($bg, 0%);
+      box-shadow: 0 0 0 0.15rem rgba(color(primary,500), 0.25);
+      outline: 0;
+    }
+    &:active {
+      background: darken($bg, 0%);
+    }
+    
+  // propiedades para input con background
+  } @else{
+    background: $bg;
+    &:hover {
+      background: darken($bg, 7%);
+      transition: background 0.2s ease;
+    }
+    &:focus {
+      background: darken($bg, 7%);
+      outline: 0;
+    }
+    &:active {
+      background: darken($bg, 10%);
+    }
+  }
+  &:disabled {
+    color: $color;
+    &:hover {
+      background: $bg;
+    }
+  }
+}
+
+// ==========================================================================
+// Mixins para la generación de los select : @include textarea( ... );
+// ==========================================================================
+@mixin textarea($height, $width) {
+  height: $height;
+  width: $width;
+}
+
+// ==========================================================================
+// Mixins para la generación de los select : @include button( ... );
+// ==========================================================================
+@mixin select($bg, $color,  $border-style, $border-width,$border,$border-radius) {
+  border: $border-style $border-width $border;
+  border-radius: $border-radius;
+  color: $color;
+  cursor:pointer;
+  font-family: $font-primary;
+  margin: 0.5rem;
+  padding: 0.5rem 2rem 0.5rem 0.5rem;
+  // propiedades para input outline
+    &:hover {
+      outline-color:color(primary,500);
+    }
+    &:focus {
+      outline-color: rgba(color(primary,500), 0.5);
+    }
+    &:active {
+      outline-color: rgba(color(secondary,500), 0.5);
+    } 
+  &:disabled {
+    opacity: 0.55;
+    color: $color;
+    box-shadow: none;
+    cursor: auto;
+  }
+}
+
+// ==========================================================================
+// Mixins para links @include link() 
+// ==========================================================================
+@mixin link ($color, $colorHover){
+  color: $color;
+  &:hover, &:focus{
+    color: $colorHover;
+  }
+}
+
+// ==========================================================================
+// Mixins para el texto @include text(1.2rem,1.6) 
+// ==========================================================================
+@mixin text($tamano, $line-height) {
+  font-size: $tamano;
+  line-height:$line-height;
+}
+
+// ==========================================================================
+// Mixins para eliminar apariencia por defecto del navegador
+// ==========================================================================
+@mixin appearance($value) {
+  -webkit-appearance: ($value);
+  -moz-appearance: ($value);
+  -ms-appearance: ($value);
+  -o-appearance: ($value);
+  appearance: ($value);
+}
+// ==========================================================================
+// Mixins para colocar cierta cantidad de líneas
+// ==========================================================================
+@mixin lineclamp($value) {
+  display: -webkit-box;     
+  -webkit-line-clamp: ($value);
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+// Funcion que define los colores del sistema basado en el mapa de colores establecido en las variables
+@function color($color, $tone) {
+  @if map-has-key($colors, $color) {
+    $color: map-get($colors, $color);
+    @if map-has-key($color, $tone) {
+      $tone: map-get($color, $tone);
+      @return $tone;
+    }
+  }
+}
+
+// ==========================================================================
+// Mixins placeholder
+// ==========================================================================
+@mixin placeholder($selector, $color, $fontWeight, $size) {
+  #{$selector}::-webkit-input-placeholder {
+    color: $color;
+    font-weight: $fontWeight;
+    $size: font-size;
+  }
+  #{$selector}::-moz-placeholder {
+    color: $color;
+    font-weight: $fontWeight;
+    $size: font-size;
+  }
+  #{$selector}:-ms-input-placeholder {
+    color: $color;
+    font-weight: $fontWeight;
+    $size: font-size;
+  }
+}
+
+// ==========================================================================
+// Mixins para el texto @include linear-gradient() 
+// ==========================================================================
+@mixin linear-gradient($direction, $color-stops...) {
+  background: nth(nth($color-stops, 1), 1);
+  background: -webkit-linear-gradient(legacy-direction($direction), $color-stops);
+  background: linear-gradient($direction, $color-stops);
+}
+
+// ==========================================================================
+// Mixins para Titulos : @include titles (color, font-family)
+// ==========================================================================
+
+@mixin titles($font-size,$line-height){
+    font-size: $font-size;
+    line-height: $line-height;
+}
+
+// ==========================================================================
+// Mixins para Grid : @include grid (1rem, display);
+// ==========================================================================
+
+@mixin grid($gap, $display,$grid-colums){
+  display: grid;
+  grid-gap: $gap;
+  grid-template-columns: $grid-colums;
+}
+
+// RGB to RGBA
+//example -> background-color: hex-to-rgba($color-3, 0.68);
+@function hex-to-rgba($color: #FFF, $opacity: 0.5) {
+  @return rgba(red($color), green($color), blue($color), $opacity);
+}

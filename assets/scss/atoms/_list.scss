@@ -1,0 +1,19 @@
+ul {
+  font-family: $font-primary;
+  font-size: map-get($sizes, base);
+  list-style: none;
+  margin-left: 0;
+  li {
+    padding: 0;
+  }
+}
+ol {  
+  font-family: $font-primary;
+  font-size: map-get($sizes, base);
+  list-style: decimal;
+  margin-left: 2rem;
+  li {
+    padding-bottom: 1rem;
+  }
+}
+  
